@@ -21,7 +21,7 @@ public class Main {
     public static void main(String[] args)   {
       Main app=new Main();
       app.testCreateSave();
-        /*try {
+        try {
             app.testLoadView();
         } catch (InvalidCatalogException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
@@ -29,7 +29,7 @@ public class Main {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
       
     }
     public void testCreateSave(){
