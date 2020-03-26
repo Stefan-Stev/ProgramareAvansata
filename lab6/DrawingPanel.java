@@ -1,6 +1,5 @@
 package lab6;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -15,14 +14,13 @@ import java.awt.Color;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author stefan
  */
 public class DrawingPanel extends javax.swing.JPanel {
 
-   
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -41,65 +39,62 @@ public class DrawingPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
     final MainFrame frame;
-    final static int W=800, H=600;
+    final static int W = 800, H = 600;
     BufferedImage image;
     Graphics2D graphics;
-    public DrawingPanel (MainFrame frame){
-        this.frame=frame;
+
+    public DrawingPanel(MainFrame frame) {
+        this.frame = frame;
         createOffscreenImage();
         init();
     }
-    private void createOffscreenImage()
-    {
-        image=new BufferedImage(W,H,BufferedImage.TYPE_INT_ARGB);
-        graphics=image.createGraphics();
+
+    private void createOffscreenImage() {
+        image = new BufferedImage(W, H, BufferedImage.TYPE_INT_ARGB);
+        graphics = image.createGraphics();
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0, 0, W, H);
-    }          
+    }
+
     private void init() {
-        setPreferredSize(new Dimension(W, H)); 
-        setBorder(BorderFactory.createEtchedBorder()); 
+        setPreferredSize(new Dimension(W, H));
+        setBorder(BorderFactory.createEtchedBorder());
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 drawShape(e.getX(), e.getY());
                 repaint();
-            } 
+            }
         });
     }
-    private void drawShape(int x,int y){
-        Random rand=new Random();
-                int radius=rand.nextInt(90);
-                int sides=(int) frame.configPanel.sidesField.getValue();
-                Color color ;
-                if(frame.configPanel.colorCombo.getSelectedItem()=="Random")
-                {
-                    int r=rand.nextInt(255-128)+128;
-                    int g=rand.nextInt(255-128)+128;
-                    int b=rand.nextInt(255-128)+128;
-                    //cica culorile transparente sunt intre 128 si 255
-                   color=new Color(r,g,b); //am creat  culoare 
-                }else
-                {
-                    color=Color.BLACK;
-                }
-                graphics.setColor(color);
-                graphics.fill(new RegularPolygon(x, y, radius, sides));
-                
+
+    private void drawShape(int x, int y) {
+        Random rand = new Random();
+        int radius = rand.nextInt(90);
+        int sides = (int) frame.configPanel.sidesField.getValue();
+        Color color;
+        if (frame.configPanel.colorCombo.getSelectedItem() == "Random") {
+            int r = rand.nextInt(255 - 128) + 128;
+            int g = rand.nextInt(255 - 128) + 128;
+            int b = rand.nextInt(255 - 128) + 128;
+            //cica culorile transparente sunt intre 128 si 255
+            color = new Color(r, g, b); //am creat  culoare 
+        } else {
+            color = Color.BLACK;
+        }
+        graphics.setColor(color);
+        graphics.fill(new RegularPolygon(x, y, radius, sides));
+
     }
 
-  @Override
+    @Override
     public void update(Graphics g) {
-    } //Why did I do that?
- @Override
+    }
+
+    @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(image, 0, 0, this);
     }
-    
-  
 
 }
-
-

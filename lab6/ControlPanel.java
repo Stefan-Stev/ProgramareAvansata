@@ -1,7 +1,5 @@
 package lab6;
 
-
-
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -15,7 +13,6 @@ import javax.swing.JButton;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author stefan
@@ -23,13 +20,13 @@ import javax.swing.JButton;
 public class ControlPanel extends javax.swing.JPanel {
 
     final MainFrame frame;
-    JButton saveButton =new JButton("Save");
-    JButton loadButton =new JButton("Load");
-    JButton  resetButton=new JButton("Reset");
-    JButton exitButton=new JButton("Exit");
-    
-    public ControlPanel( MainFrame frame) {
-        this.frame=frame;
+    JButton saveButton = new JButton("Save");
+    JButton loadButton = new JButton("Load");
+    JButton resetButton = new JButton("Reset");
+    JButton exitButton = new JButton("Exit");
+
+    public ControlPanel(MainFrame frame) {
+        this.frame = frame;
         init();
     }
 
@@ -57,33 +54,34 @@ public class ControlPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
     private void init() {
         //voi schimba layout default manager
-        setLayout(new GridLayout(1,4));
+        setLayout(new GridLayout(1, 4));
         //adaugam butoanele
         add(saveButton);
         add(loadButton);
         add(resetButton);
         add(exitButton);
-        
+
         //ascultam orice eveniment
-       saveButton.addActionListener(this::save);
-       loadButton.addActionListener(this::load);
-       resetButton.addActionListener(this::reset);
-       exitButton.addActionListener(this::exit);
+        saveButton.addActionListener(this::save);
+        loadButton.addActionListener(this::load);
+        resetButton.addActionListener(this::reset);
+        exitButton.addActionListener(this::exit);
     }
-     private void save(ActionEvent e) {
+
+    private void save(ActionEvent e) {
         try {
             ImageIO.write(frame.canvas.image, "png", new File("./tree.png"));
         } catch (IOException ex) {
             System.err.println(ex);
         }
     }
-     private void exit(ActionEvent e)
-     {
-         System.exit(0);
-     }
+
+    private void exit(ActionEvent e) {
+        System.exit(0);
+    }
+
     private void load(ActionEvent e) {
         try {
             frame.canvas.image = ImageIO.read(new File("tree.png"));
@@ -94,11 +92,10 @@ public class ControlPanel extends javax.swing.JPanel {
         frame.canvas.repaint();
     }
 
-    private void reset(ActionEvent e)
-    {
+    private void reset(ActionEvent e) {
         frame.canvas.graphics.setColor(Color.WHITE);
-        frame.canvas.graphics.fillRect(0,0,800,600);
+        frame.canvas.graphics.fillRect(0, 0, 800, 600);
         frame.canvas.repaint();
     }
-    
+
 }

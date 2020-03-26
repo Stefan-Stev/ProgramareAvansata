@@ -1,3 +1,4 @@
+package lab6;
 
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.NORTH;
@@ -10,7 +11,6 @@ import static javax.swing.SwingConstants.BOTTOM;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author stefan
@@ -20,6 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
+
     public MainFrame() {
         super("My Drawing  Application");
         init();
@@ -53,23 +54,20 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-           
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
     private void init() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         // se creaza componentele
-        canvas= new DrawingPanel(this);
-        configPanel=new ConfigPanel(this);
-        controlPanel=new ControlPanel(this);
-        add(canvas,CENTER);
-        add(configPanel,NORTH);
-        add(controlPanel,SOUTH);
+        canvas = new DrawingPanel(this);
+        configPanel = new ConfigPanel(this);
+        controlPanel = new ControlPanel(this);
+        add(canvas, CENTER);
+        add(configPanel, NORTH);
+        add(controlPanel, SOUTH);
         pack();
-        
-        
+
     }
 
-    
 }

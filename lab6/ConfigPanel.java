@@ -1,3 +1,4 @@
+package lab6;
 
 import java.awt.Color;
 import javax.swing.JComboBox;
@@ -10,7 +11,6 @@ import javax.swing.SpinnerNumberModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author stefan
@@ -21,9 +21,9 @@ public class ConfigPanel extends javax.swing.JPanel {
     JLabel label;   //pentru poligoane regulate
     JSpinner sidesField;  // pentru numarul de sides
     JComboBox colorCombo; //culoarea formei
-    
-    public ConfigPanel(MainFrame frame) { 
-        this.frame=frame;
+
+    public ConfigPanel(MainFrame frame) {
+        this.frame = frame;
         init();
     }
 
@@ -51,25 +51,21 @@ public class ConfigPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    private void init()
-    {   //am creat labelul cu mesajul respectiv si spinner 
-        JLabel sidesLabel=new JLabel("Number of sides:");
-        sidesField=new JSpinner (new SpinnerNumberModel(0,0,100,1));
+    private void init() {   //am creat labelul cu mesajul respectiv si spinner 
+        JLabel sidesLabel = new JLabel("Number of sides:");
+        sidesField = new JSpinner(new SpinnerNumberModel(0, 0, 100, 1));
         sidesField.setValue(6); //am setat la un numar de 6 slide uri
-        
-        JLabel colorLabel=new JLabel ("Colour of label:");
-        String[] colors={"Random", "Balck"};
-        colorCombo= new JComboBox(colors);
-       
-         //JPanel uses FlowLayout by default
+
+        JLabel colorLabel = new JLabel("Colour of label:");
+        String[] colors = {"Random", "Balck"};
+        colorCombo = new JComboBox(colors);
+
+        //JPanel uses FlowLayout by default
         add(sidesLabel);
         add(sidesField);
         add(colorLabel);
         add(colorCombo);
-        
-        
+
     }
 
 }
-
-
