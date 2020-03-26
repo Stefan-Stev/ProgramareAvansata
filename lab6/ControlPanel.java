@@ -1,3 +1,5 @@
+package lab6;
+
 
 
 import java.awt.Color;
@@ -73,7 +75,7 @@ public class ControlPanel extends javax.swing.JPanel {
     }
      private void save(ActionEvent e) {
         try {
-            ImageIO.write(frame.canvas.image, "PNG", new File("~/NetBeansProjects"));
+            ImageIO.write(frame.canvas.image, "png", new File("./tree.png"));
         } catch (IOException ex) {
             System.err.println(ex);
         }
@@ -84,7 +86,7 @@ public class ControlPanel extends javax.swing.JPanel {
      }
     private void load(ActionEvent e) {
         try {
-            frame.canvas.image = ImageIO.read(new File("load.png"));
+            frame.canvas.image = ImageIO.read(new File("tree.png"));
         } catch (IOException ee) {
             ee.printStackTrace();
         }

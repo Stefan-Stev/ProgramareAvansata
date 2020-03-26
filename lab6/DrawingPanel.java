@@ -1,3 +1,5 @@
+package lab6;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,6 +48,7 @@ public class DrawingPanel extends javax.swing.JPanel {
     Graphics2D graphics;
     public DrawingPanel (MainFrame frame){
         this.frame=frame;
+        createOffscreenImage();
         init();
     }
     private void createOffscreenImage()
