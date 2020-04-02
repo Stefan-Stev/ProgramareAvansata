@@ -20,6 +20,7 @@ public class MainFrame extends javax.swing.JFrame {
     ConfigPanel configPanel;
     ControlPanel controlPanel;
     DrawingPanel canvas;
+    ConfigPanel2 configPanel2;
 
     public MainFrame() {
         super("My Drawing  Application");
@@ -61,10 +62,11 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         // se creaza componentele
         canvas = new DrawingPanel(this);
-        configPanel = new ConfigPanel(this);
+        //configPanel = new ConfigPanel(this);
+        configPanel2 = new ConfigPanel2(this);
         controlPanel = new ControlPanel(this);
         add(canvas, CENTER);
-        add(configPanel, NORTH);
+        add(configPanel2, NORTH);
         add(controlPanel, SOUTH);
         pack();
 

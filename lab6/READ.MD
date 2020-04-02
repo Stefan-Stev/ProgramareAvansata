@@ -1,1 +1,3 @@
-Am realizat partea compulsory. Lab6.java este Main.  A se uita doar la fisierele .java nu si la.form
+Am realizat partea de la optional (cerinta 1 si 2 ). Am realizat in aceasta tema suport pt desenarea liniilor si a cercurilor . De asemenea , am realizat un File chooser unde pot salva dar si de unde pot da load.De precizat ca Programul ruleaza. 
+
+DE asemenea, am in cod o parte comentata. Daca aceasta se decomenteaza  si se comenteaza urmatoare, se poate obtine "un fel de graf" . A se vedea in poza noua atasata pe acest git.

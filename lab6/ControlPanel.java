@@ -5,8 +5,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,6 +27,8 @@ public class ControlPanel extends javax.swing.JPanel {
     JButton loadButton = new JButton("Load");
     JButton resetButton = new JButton("Reset");
     JButton exitButton = new JButton("Exit");
+    JButton chooseSaveAs = new JButton("Choose a file where Save");
+    JButton chooseLoadFrom = new JButton("Load from");
 
     public ControlPanel(MainFrame frame) {
         this.frame = frame;
@@ -62,12 +67,17 @@ public class ControlPanel extends javax.swing.JPanel {
         add(loadButton);
         add(resetButton);
         add(exitButton);
-
+        add(chooseSaveAs);
+        add(chooseLoadFrom);
         //ascultam orice eveniment
         saveButton.addActionListener(this::save);
         loadButton.addActionListener(this::load);
         resetButton.addActionListener(this::reset);
         exitButton.addActionListener(this::exit);
+        
+        //am creat pt File chooser
+        chooseSaveAs.addActionListener(this::chooseSaved);
+        chooseLoadFrom.addActionListener(this::chooseLoad);
     }
 
     private void save(ActionEvent e) {
@@ -94,8 +104,41 @@ public class ControlPanel extends javax.swing.JPanel {
 
     private void reset(ActionEvent e) {
         frame.canvas.graphics.setColor(Color.WHITE);
-        frame.canvas.graphics.fillRect(0, 0, 800, 600);
+        frame.canvas.graphics.fillRect(0, 0, 1400, 600);
         frame.canvas.repaint();
+    }
+
+    
+    
+    //File chooser pentru a salva intr-o anumita locatie
+    private void chooseSaved(ActionEvent e) {
+        String filename = File.separator + "tmp";
+        JFileChooser fileChooser = new JFileChooser(new File(filename));
+        //fileChooser.showOpenDialog(frame);//face sa mi apara "Open File'' Chooser dialog
+        // System.out.println("File to open: " + fileChooser.getSelectedFile());
+        fileChooser.showSaveDialog(frame);
+        System.out.println("File to be saved" + fileChooser.getSelectedFile());
+        try {
+            ImageIO.write(frame.canvas.image, "png", fileChooser.getSelectedFile());
+        } catch (IOException ex) {
+            Logger.getLogger(ControlPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+  //File chooser pentru a incarca dintr-o anumita locatie
+    private void chooseLoad(ActionEvent e) {
+        String filename = File.separator + "tmp";
+        JFileChooser fileChooser = new JFileChooser(new File(filename));
+        fileChooser.showOpenDialog(frame);
+        System.out.println("File to be open" + fileChooser.getSelectedFile());
+        try {
+            frame.canvas.image = ImageIO.read(fileChooser.getSelectedFile());
+        } catch (IOException ex) {
+            Logger.getLogger(ControlPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        frame.canvas.graphics = frame.canvas.image.createGraphics();
+        frame.canvas.repaint();
+
     }
 
 }

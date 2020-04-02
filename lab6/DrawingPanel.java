@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.lang.Object;
 import java.awt.Color;
+import javafx.scene.shape.Circle;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -40,9 +42,12 @@ public class DrawingPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
     final MainFrame frame;
-    final static int W = 800, H = 600;
+    final static int W = 1400, H = 600;
     BufferedImage image;
     Graphics2D graphics;
+    int counterForLines;
+    private int x2;
+    private int y2;
 
     public DrawingPanel(MainFrame frame) {
         this.frame = frame;
@@ -70,21 +75,111 @@ public class DrawingPanel extends javax.swing.JPanel {
     }
 
     private void drawShape(int x, int y) {
+        //aici voi desena un cerc
         Random rand = new Random();
-        int radius = rand.nextInt(90);
-        int sides = (int) frame.configPanel.sidesField.getValue();
-        Color color;
-        if (frame.configPanel.colorCombo.getSelectedItem() == "Random") {
-            int r = rand.nextInt(255 - 128) + 128;
-            int g = rand.nextInt(255 - 128) + 128;
-            int b = rand.nextInt(255 - 128) + 128;
-            //cica culorile transparente sunt intre 128 si 255
-            color = new Color(r, g, b); //am creat  culoare 
-        } else {
-            color = Color.BLACK;
+        if (frame.configPanel2.shape.getSelectedItem() == "Circle") {
+            System.out.println("da");
+            Color color;
+            if (frame.configPanel2.colorBox.getSelectedItem() == "Random") {
+                int r = rand.nextInt(255 - 128) + 128;
+                int g = rand.nextInt(255 - 128) + 128;
+                int b = rand.nextInt(255 - 128) + 128;
+                //cica culorile transparente sunt intre 128 si 255
+                color = new Color(r, g, b); //am creat  culoare 
+            } else {
+                color = Color.BLACK;
+            }
+            graphics.setColor(color);
+            int radius = rand.nextInt(100);
+            
+            graphics.fill(new NodeShape(x, y, radius));
         }
-        graphics.setColor(color);
-        graphics.fill(new RegularPolygon(x, y, radius, sides));
+        //desenez un poligon
+        if (frame.configPanel2.shape.getSelectedItem() == "Polygon") {
+            System.out.println("Poligon--------");
+            int radius = rand.nextInt(90);
+            int sides = 6;
+
+            System.out.println(sides);
+            Color color;
+
+            if (frame.configPanel2.colorBox.getSelectedItem() == "Random") {
+                int r = rand.nextInt(255 - 128) + 128;
+                int g = rand.nextInt(255 - 128) + 128;
+                int b = rand.nextInt(255 - 128) + 128;
+                //cica culorile transparente sunt intre 128 si 255
+                color = new Color(r, g, b); //am creat  culoare 
+            } else {
+                color = Color.BLACK;
+            }
+
+            graphics.setColor(color);
+            graphics.fill(new RegularPolygon(x, y, radius, sides));
+
+        }
+
+        //In caz ca este linie 
+        if (frame.configPanel2.shape.getSelectedItem() == "Line") {
+            System.out.println("Ma pregatesc de desenat o linie");
+            /*Color color;
+             //trebuie sa aleg culoarea
+             if (frame.configPanel2.colorBox.getSelectedItem() == "Random") {
+             int r = rand.nextInt(255 - 128) + 128;
+             int g = rand.nextInt(255 - 128) + 128;
+             int b = rand.nextInt(255 - 128) + 128;
+             //cica culorile transparente sunt intre 128 si 255
+             color = new Color(r, g, b); //am creat  culoare 
+             } else {
+             color = Color.BLACK;
+             }
+            //-----------
+
+            //adaug alte noi coordonate pentru a desena linia
+            this.addMouseListener(new MouseAdapter() {
+             @Override
+             public void mousePressed(MouseEvent e) {
+             //if(frame.configPanel2.shape.getSelectedItem()=="Line"){
+             int x2=e.getX();
+             int y2=e.getY();
+             graphics.drawLine(x, y, x2, y2);
+                
+                
+             // }
+             }       });*///-----------------------------------------
+            //Daca se decomenteaza aceasta parte si se comenteaza urmatoare, se poate obtine un "fel de"  graf (A se vedea in poza)
+            //-----------------------------------------
+            
+            
+            
+            
+            
+            //Linia o voi construi prin doua apasari de mouse(mouseEvent) se vor lua coordonatele si se vor uni ( mai intai seria de coordonate x1,y1 si apoi seria de cordonate
+            // x2 si y2 )
+            //acest if verifica daca este prima serie de coordonte
+            if (this.counterForLines == 0) {
+                counterForLines++;
+                x2 = x;
+                y2 = y;
+                //doar am retinut primul capat al liniei
+            } else {  //daca cumva am deja plasat primul capat si am plasat si al doilea capat, incep desenarea
+               Color color;
+
+                if (frame.configPanel2.colorBox.getSelectedItem() == "Random") {
+                    int r = rand.nextInt(255 - 128) + 128;
+                    int g = rand.nextInt(255 - 128) + 128;
+                    int b = rand.nextInt(255 - 128) + 128;
+                    //cica culorile transparente sunt intre 128 si 255
+                    color = new Color(r, g, b); //am creat  culoare 
+                } else {
+                    color = Color.BLACK;
+                }
+
+                graphics.setColor(color);
+                graphics.drawLine(x, y, x2, y2);
+                counterForLines = 0;
+
+            }
+        }
 
     }
 
