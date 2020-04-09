@@ -5,7 +5,7 @@ import java.sql.Connection;
 
 public class Main {
     public static void main(String[] args) {
-        Connection con = Database.getConn("STUDENT","STUDENT");
+        Connection con = Database.getConn("root","");
 
         ArtistController artist = new ArtistController();
         AlbumController album = new AlbumController();
