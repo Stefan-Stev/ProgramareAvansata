@@ -12,7 +12,7 @@ public class Database {
     public static Connection getConn (String username, String password){
         try {
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:1521/MusicAlbums",
+                    "jdbc:mysql://localhost:1521/MyAlbums",
                     username,
                     password);
         }
