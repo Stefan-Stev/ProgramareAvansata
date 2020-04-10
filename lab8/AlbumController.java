@@ -16,7 +16,7 @@ public class AlbumController {
             pstmt.setInt(2, artistId);
             pstmt.setInt(3, releaseYear);
             pstmt.executeUpdate();
-            con.close();
+            
         } catch (Exception e) {
             e.getMessage();
         }
@@ -31,7 +31,7 @@ public class AlbumController {
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
                 System.out.println("[album.findByArtist] ID: " + rs.getInt(1) + ", Name: " + rs.getString(2) + ", ID Artist: " + rs.getInt(3) + ", Release Year: " + rs.getString(4));
-            con.close();
+            
         } catch (Exception e) {
             e.getMessage();
         }
