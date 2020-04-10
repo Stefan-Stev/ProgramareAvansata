@@ -15,7 +15,7 @@ public class ArtistController {
             pstmt.setString(1, name);
             pstmt.setString(2, country);
             pstmt.executeUpdate();
-            con.close();
+           
         } catch (Exception e) {
             e.getMessage();
         }
@@ -30,7 +30,7 @@ public class ArtistController {
             ResultSet rs = pstmt.executeQuery();
             while(rs.next())
                 System.out.println("[artist.findByName] ID: " + rs.getInt(1) + ", Name: " + rs.getString(2) + ", Country: " + rs.getString(3));
-            con.close();
+           
         } catch (Exception e) {
             e.getMessage();
         }
