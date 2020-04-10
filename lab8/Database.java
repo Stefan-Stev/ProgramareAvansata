@@ -10,6 +10,7 @@ public class Database {
     }
 
     public static Connection getConn (String username, String password){
+        if(connection ==null){
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:1521/MyAlbums",
@@ -18,6 +19,7 @@ public class Database {
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }
         }
         return connection;
     }
