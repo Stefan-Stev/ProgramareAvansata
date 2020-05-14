@@ -1,1 +1,2 @@
 
+Am realizat partea compusory
