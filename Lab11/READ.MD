@@ -1,1 +1,1 @@
-
+Am realizat partea compulsory.
